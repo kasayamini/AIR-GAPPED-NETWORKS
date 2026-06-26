@@ -1,0 +1,1902 @@
+[
+  {
+    "timestamp": "2026-06-25T23:46:59.117206",
+    "metrics": {
+      "latency": 101.24,
+      "packet_loss": 3.5,
+      "jitter": 9.63,
+      "bandwidth": 97.69
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.19497085977702577
+    },
+    "rca": {
+      "cause": "Bandwidth Saturation / Traffic Overload",
+      "impact": "High bandwidth utilization (97.7%) is causing link congestion, queue delays, and minor packet loss. Latency is also spiking due to queuing delay.",
+      "confidence": 90
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:01.214041",
+    "metrics": {
+      "latency": 24.53,
+      "packet_loss": 1.06,
+      "jitter": 4.66,
+      "bandwidth": 31.77
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 51,
+      "decision_score": -0.014028249104312551
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:03.328358",
+    "metrics": {
+      "latency": 29.37,
+      "packet_loss": 0.75,
+      "jitter": 5.22,
+      "bandwidth": 46.46
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 31,
+      "decision_score": 0.11072664593717602
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:05.444237",
+    "metrics": {
+      "latency": 30.89,
+      "packet_loss": 0.6,
+      "jitter": 4.76,
+      "bandwidth": 49.76
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 31,
+      "decision_score": 0.11352592053455263
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:07.558311",
+    "metrics": {
+      "latency": 25.11,
+      "packet_loss": 0.74,
+      "jitter": 6.2,
+      "bandwidth": 47.78
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 29,
+      "decision_score": 0.12138494663274096
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:09.655579",
+    "metrics": {
+      "latency": 23.27,
+      "packet_loss": 1.03,
+      "jitter": 4.93,
+      "bandwidth": 33.38
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 51,
+      "decision_score": -0.009884338030928475
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:11.761260",
+    "metrics": {
+      "latency": 19.65,
+      "packet_loss": 0.72,
+      "jitter": 2.61,
+      "bandwidth": 46.5
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 41,
+      "decision_score": 0.05112521565475703
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:13.858256",
+    "metrics": {
+      "latency": 28.09,
+      "packet_loss": 0.46,
+      "jitter": 2.99,
+      "bandwidth": 45.08
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 30,
+      "decision_score": 0.11880959314772771
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:16.016718",
+    "metrics": {
+      "latency": 27.78,
+      "packet_loss": 1.13,
+      "jitter": 5.39,
+      "bandwidth": 48.79
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 49,
+      "decision_score": 0.005714798400689447
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:18.183952",
+    "metrics": {
+      "latency": 21.47,
+      "packet_loss": 0.73,
+      "jitter": 4.43,
+      "bandwidth": 38.53
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 31,
+      "decision_score": 0.1107812583402058
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:20.321622",
+    "metrics": {
+      "latency": 25.5,
+      "packet_loss": 0.19,
+      "jitter": 3.01,
+      "bandwidth": 43.47
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 31,
+      "decision_score": 0.11262405491712318
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:22.420366",
+    "metrics": {
+      "latency": 91.76,
+      "packet_loss": 3.81,
+      "jitter": 13.8,
+      "bandwidth": 94.19
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.19752855893172283
+    },
+    "rca": {
+      "cause": "Bandwidth Saturation / Traffic Overload",
+      "impact": "High bandwidth utilization (94.2%) is causing link congestion, queue delays, and minor packet loss. Latency is also spiking due to queuing delay.",
+      "confidence": 90
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:24.536329",
+    "metrics": {
+      "latency": 119.15,
+      "packet_loss": 2.86,
+      "jitter": 9.62,
+      "bandwidth": 88.56
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.19497085977702577
+    },
+    "rca": {
+      "cause": "Bandwidth Saturation / Traffic Overload",
+      "impact": "High bandwidth utilization (88.6%) is causing link congestion, queue delays, and minor packet loss. Latency is also spiking due to queuing delay.",
+      "confidence": 90
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:26.643197",
+    "metrics": {
+      "latency": 119.62,
+      "packet_loss": 2.7,
+      "jitter": 12.56,
+      "bandwidth": 97.22
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.19752855893172283
+    },
+    "rca": {
+      "cause": "Bandwidth Saturation / Traffic Overload",
+      "impact": "High bandwidth utilization (97.2%) is causing link congestion, queue delays, and minor packet loss. Latency is also spiking due to queuing delay.",
+      "confidence": 90
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:28.739318",
+    "metrics": {
+      "latency": 83.85,
+      "packet_loss": 3.97,
+      "jitter": 12.88,
+      "bandwidth": 91.95
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.19752855893172283
+    },
+    "rca": {
+      "cause": "Bandwidth Saturation / Traffic Overload",
+      "impact": "High bandwidth utilization (92.0%) is causing link congestion, queue delays, and minor packet loss. Latency is also spiking due to queuing delay.",
+      "confidence": 90
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:30.848573",
+    "metrics": {
+      "latency": 87.22,
+      "packet_loss": 2.32,
+      "jitter": 10.01,
+      "bandwidth": 90.78
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.19752855893172283
+    },
+    "rca": {
+      "cause": "Bandwidth Saturation / Traffic Overload",
+      "impact": "High bandwidth utilization (90.8%) is causing link congestion, queue delays, and minor packet loss. Latency is also spiking due to queuing delay.",
+      "confidence": 90
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:32.944100",
+    "metrics": {
+      "latency": 27.17,
+      "packet_loss": 0.12,
+      "jitter": 5.49,
+      "bandwidth": 47.4
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 26,
+      "decision_score": 0.14102207112801474
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:35.052568",
+    "metrics": {
+      "latency": 30.67,
+      "packet_loss": 0.27,
+      "jitter": 3.77,
+      "bandwidth": 33.76
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 37,
+      "decision_score": 0.07343433936922833
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:37.123488",
+    "metrics": {
+      "latency": 18.95,
+      "packet_loss": 0.29,
+      "jitter": 3.31,
+      "bandwidth": 39.23
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 34,
+      "decision_score": 0.09232067578999853
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:39.195937",
+    "metrics": {
+      "latency": 30.44,
+      "packet_loss": 1.1,
+      "jitter": 5.37,
+      "bandwidth": 44.21
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 52,
+      "decision_score": -0.020958114576623332
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:41.282900",
+    "metrics": {
+      "latency": 18.06,
+      "packet_loss": 0.62,
+      "jitter": 5.56,
+      "bandwidth": 40.82
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 32,
+      "decision_score": 0.10615363839672198
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:43.385514",
+    "metrics": {
+      "latency": 29.06,
+      "packet_loss": 0.43,
+      "jitter": 4.0,
+      "bandwidth": 36.05
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 29,
+      "decision_score": 0.12005817654483186
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:45.468240",
+    "metrics": {
+      "latency": 21.98,
+      "packet_loss": 0.72,
+      "jitter": 3.34,
+      "bandwidth": 49.98
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 33,
+      "decision_score": 0.09629963530564845
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:47.573629",
+    "metrics": {
+      "latency": 31.16,
+      "packet_loss": 1.08,
+      "jitter": 5.64,
+      "bandwidth": 46.84
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 52,
+      "decision_score": -0.021816602294699394
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:49.664347",
+    "metrics": {
+      "latency": 25.41,
+      "packet_loss": 0.43,
+      "jitter": 3.83,
+      "bandwidth": 31.58
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 32,
+      "decision_score": 0.10720680165654145
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:51.750938",
+    "metrics": {
+      "latency": 20.75,
+      "packet_loss": 0.99,
+      "jitter": 5.41,
+      "bandwidth": 32.56
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 54,
+      "decision_score": -0.03878496279749266
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:53.875262",
+    "metrics": {
+      "latency": 26.95,
+      "packet_loss": 1.1,
+      "jitter": 3.24,
+      "bandwidth": 39.14
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 51,
+      "decision_score": -0.014518084477172288
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:55.973760",
+    "metrics": {
+      "latency": 29.0,
+      "packet_loss": 0.17,
+      "jitter": 3.8,
+      "bandwidth": 41.6
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 32,
+      "decision_score": 0.10560246162544201
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:47:58.095644",
+    "metrics": {
+      "latency": 31.11,
+      "packet_loss": 8.32,
+      "jitter": 3.89,
+      "bandwidth": 44.67
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 52,
+      "decision_score": -0.022502792238753955
+    },
+    "rca": {
+      "cause": "Interface CRC Errors / Wireless Interference",
+      "impact": "Moderate packet loss (8.3%) is forcing TCP retransmissions, slowing down file transfers and web browsing.",
+      "confidence": 75
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:00.203750",
+    "metrics": {
+      "latency": 33.12,
+      "packet_loss": 6.44,
+      "jitter": 4.74,
+      "bandwidth": 25.99
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 61,
+      "decision_score": -0.09430222806161759
+    },
+    "rca": {
+      "cause": "Interface CRC Errors / Wireless Interference",
+      "impact": "Moderate packet loss (6.4%) is forcing TCP retransmissions, slowing down file transfers and web browsing.",
+      "confidence": 75
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:02.266656",
+    "metrics": {
+      "latency": 25.78,
+      "packet_loss": 12.52,
+      "jitter": 3.01,
+      "bandwidth": 39.66
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 50,
+      "decision_score": -0.003290525089593266
+    },
+    "rca": {
+      "cause": "Interface CRC Errors / Wireless Interference",
+      "impact": "Moderate packet loss (12.5%) is forcing TCP retransmissions, slowing down file transfers and web browsing.",
+      "confidence": 75
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:04.362698",
+    "metrics": {
+      "latency": 24.21,
+      "packet_loss": 11.82,
+      "jitter": 5.75,
+      "bandwidth": 38.15
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 48,
+      "decision_score": 0.007163643831041178
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:06.431919",
+    "metrics": {
+      "latency": 23.67,
+      "packet_loss": 0.47,
+      "jitter": 5.55,
+      "bandwidth": 38.41
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 22,
+      "decision_score": 0.16353732637218593
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:08.536488",
+    "metrics": {
+      "latency": 18.68,
+      "packet_loss": 0.12,
+      "jitter": 3.64,
+      "bandwidth": 46.75
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 40,
+      "decision_score": 0.05951663521721562
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:10.638720",
+    "metrics": {
+      "latency": 29.0,
+      "packet_loss": 0.99,
+      "jitter": 4.47,
+      "bandwidth": 32.62
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 54,
+      "decision_score": -0.03451028247125454
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:12.695762",
+    "metrics": {
+      "latency": 85.64,
+      "packet_loss": 67.97,
+      "jitter": 13.85,
+      "bandwidth": 9.68
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1985674976174251
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (68.0%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:14.838371",
+    "metrics": {
+      "latency": 71.0,
+      "packet_loss": 73.77,
+      "jitter": 13.66,
+      "bandwidth": 13.91
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1985674976174251
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (73.8%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:16.951376",
+    "metrics": {
+      "latency": 69.78,
+      "packet_loss": 73.74,
+      "jitter": 13.99,
+      "bandwidth": 12.92
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1985674976174251
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (73.7%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:19.054291",
+    "metrics": {
+      "latency": 28.24,
+      "packet_loss": 0.76,
+      "jitter": 4.76,
+      "bandwidth": 49.69
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 31,
+      "decision_score": 0.11205921366998817
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:21.179553",
+    "metrics": {
+      "latency": 27.81,
+      "packet_loss": 0.33,
+      "jitter": 5.03,
+      "bandwidth": 30.32
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 34,
+      "decision_score": 0.09425755329444246
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:23.274230",
+    "metrics": {
+      "latency": 72.02,
+      "packet_loss": 66.34,
+      "jitter": 9.39,
+      "bandwidth": 13.27
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1954950870739265
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (66.3%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:25.543417",
+    "metrics": {
+      "latency": 85.89,
+      "packet_loss": 72.34,
+      "jitter": 13.31,
+      "bandwidth": 13.06
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1985674976174251
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (72.3%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:27.720361",
+    "metrics": {
+      "latency": 70.34,
+      "packet_loss": 83.47,
+      "jitter": 9.11,
+      "bandwidth": 13.05
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1954950870739265
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (83.5%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:29.829964",
+    "metrics": {
+      "latency": 84.07,
+      "packet_loss": 73.91,
+      "jitter": 10.76,
+      "bandwidth": 11.21
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1985674976174251
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (73.9%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:31.906831",
+    "metrics": {
+      "latency": 71.82,
+      "packet_loss": 67.38,
+      "jitter": 12.79,
+      "bandwidth": 9.05
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1985674976174251
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (67.4%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:33.986838",
+    "metrics": {
+      "latency": 19.29,
+      "packet_loss": 0.47,
+      "jitter": 2.58,
+      "bandwidth": 31.64
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 46,
+      "decision_score": 0.02315027679621018
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:36.074196",
+    "metrics": {
+      "latency": 18.53,
+      "packet_loss": 0.94,
+      "jitter": 5.82,
+      "bandwidth": 47.78
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 49,
+      "decision_score": 0.0036512007176479067
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:38.162577",
+    "metrics": {
+      "latency": 22.14,
+      "packet_loss": 0.92,
+      "jitter": 5.22,
+      "bandwidth": 44.84
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 38,
+      "decision_score": 0.0678524641991387
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:40.251578",
+    "metrics": {
+      "latency": 19.75,
+      "packet_loss": 0.28,
+      "jitter": 2.65,
+      "bandwidth": 44.79
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 38,
+      "decision_score": 0.07176225982838125
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:42.326389",
+    "metrics": {
+      "latency": 20.1,
+      "packet_loss": 0.71,
+      "jitter": 6.22,
+      "bandwidth": 33.01
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 42,
+      "decision_score": 0.045548673587927246
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:44.412244",
+    "metrics": {
+      "latency": 19.91,
+      "packet_loss": 1.15,
+      "jitter": 2.95,
+      "bandwidth": 39.32
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 52,
+      "decision_score": -0.02396194763522863
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:46.484475",
+    "metrics": {
+      "latency": 84.11,
+      "packet_loss": 70.05,
+      "jitter": 12.17,
+      "bandwidth": 5.04
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1985674976174251
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (70.0%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:48.610594",
+    "metrics": {
+      "latency": 75.45,
+      "packet_loss": 82.6,
+      "jitter": 9.06,
+      "bandwidth": 12.36
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1954950870739265
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (82.6%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:50.698493",
+    "metrics": {
+      "latency": 63.18,
+      "packet_loss": 75.39,
+      "jitter": 13.33,
+      "bandwidth": 6.68
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 74,
+      "decision_score": -0.1985674976174251
+    },
+    "rca": {
+      "cause": "Critical ISP / Link Degradation",
+      "impact": "High packet loss (75.4%) is causing connection drops, broken VPN tunnels, and application failures.",
+      "confidence": 95
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:52.759975",
+    "metrics": {
+      "latency": 25.03,
+      "packet_loss": 0.33,
+      "jitter": 4.48,
+      "bandwidth": 36.52
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 23,
+      "decision_score": 0.15665143730360226
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:54.888871",
+    "metrics": {
+      "latency": 20.71,
+      "packet_loss": 0.68,
+      "jitter": 4.21,
+      "bandwidth": 44.61
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 29,
+      "decision_score": 0.12345606701743472
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:56.985088",
+    "metrics": {
+      "latency": 27.29,
+      "packet_loss": 1.01,
+      "jitter": 4.62,
+      "bandwidth": 49.21
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 48,
+      "decision_score": 0.011165329739261765
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:48:59.050675",
+    "metrics": {
+      "latency": 19.32,
+      "packet_loss": 0.64,
+      "jitter": 5.77,
+      "bandwidth": 47.17
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 29,
+      "decision_score": 0.1249473063780911
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:01.136321",
+    "metrics": {
+      "latency": 25.34,
+      "packet_loss": 0.39,
+      "jitter": 5.22,
+      "bandwidth": 43.92
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 19,
+      "decision_score": 0.1821889741918044
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:03.217802",
+    "metrics": {
+      "latency": 20.87,
+      "packet_loss": 0.11,
+      "jitter": 6.13,
+      "bandwidth": 49.11
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 32,
+      "decision_score": 0.10296276519048336
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:05.306626",
+    "metrics": {
+      "latency": 24.67,
+      "packet_loss": 0.77,
+      "jitter": 2.65,
+      "bandwidth": 47.21
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 41,
+      "decision_score": 0.048208874732931783
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:07.400826",
+    "metrics": {
+      "latency": 23.3,
+      "packet_loss": 0.85,
+      "jitter": 4.05,
+      "bandwidth": 48.03
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 36,
+      "decision_score": 0.08355236065038596
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:09.494089",
+    "metrics": {
+      "latency": 25.65,
+      "packet_loss": 0.39,
+      "jitter": 3.3,
+      "bandwidth": 39.87
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 24,
+      "decision_score": 0.1514051845528634
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:11.569629",
+    "metrics": {
+      "latency": 28.18,
+      "packet_loss": 0.6,
+      "jitter": 5.12,
+      "bandwidth": 43.69
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 25,
+      "decision_score": 0.1498912777433528
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:13.636214",
+    "metrics": {
+      "latency": 25.39,
+      "packet_loss": 1.15,
+      "jitter": 2.67,
+      "bandwidth": 35.75
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 54,
+      "decision_score": -0.03514865268441403
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:15.710436",
+    "metrics": {
+      "latency": 20.17,
+      "packet_loss": 0.35,
+      "jitter": 6.46,
+      "bandwidth": 46.28
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 26,
+      "decision_score": 0.139361294924627
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:17.785893",
+    "metrics": {
+      "latency": 23.59,
+      "packet_loss": 0.24,
+      "jitter": 6.24,
+      "bandwidth": 37.24
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 27,
+      "decision_score": 0.13697484216331307
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:19.870304",
+    "metrics": {
+      "latency": 28.74,
+      "packet_loss": 1.13,
+      "jitter": 4.62,
+      "bandwidth": 40.84
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 50,
+      "decision_score": -0.001529906755195154
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:21.943340",
+    "metrics": {
+      "latency": 28.95,
+      "packet_loss": 0.42,
+      "jitter": 3.09,
+      "bandwidth": 37.41
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 32,
+      "decision_score": 0.1055509298157481
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:24.014786",
+    "metrics": {
+      "latency": 18.13,
+      "packet_loss": 0.84,
+      "jitter": 5.89,
+      "bandwidth": 36.57
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 47,
+      "decision_score": 0.01357871883629358
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:26.090994",
+    "metrics": {
+      "latency": 20.39,
+      "packet_loss": 1.09,
+      "jitter": 6.3,
+      "bandwidth": 43.5
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 50,
+      "decision_score": -0.003614183528799053
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:28.162824",
+    "metrics": {
+      "latency": 22.99,
+      "packet_loss": 0.86,
+      "jitter": 2.61,
+      "bandwidth": 35.35
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 48,
+      "decision_score": 0.00947504584188541
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:30.346595",
+    "metrics": {
+      "latency": 24.76,
+      "packet_loss": 0.9,
+      "jitter": 3.9,
+      "bandwidth": 35.52
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 41,
+      "decision_score": 0.05251325208556834
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:32.460689",
+    "metrics": {
+      "latency": 19.98,
+      "packet_loss": 0.96,
+      "jitter": 4.5,
+      "bandwidth": 44.84
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 42,
+      "decision_score": 0.045762631219796845
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:34.566316",
+    "metrics": {
+      "latency": 20.08,
+      "packet_loss": 0.94,
+      "jitter": 4.8,
+      "bandwidth": 43.2
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 42,
+      "decision_score": 0.04709608261896292
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:36.690072",
+    "metrics": {
+      "latency": 22.21,
+      "packet_loss": 0.24,
+      "jitter": 3.76,
+      "bandwidth": 41.74
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 26,
+      "decision_score": 0.13858644574528062
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:38.796075",
+    "metrics": {
+      "latency": 19.09,
+      "packet_loss": 0.65,
+      "jitter": 5.33,
+      "bandwidth": 49.59
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 29,
+      "decision_score": 0.1242264960651614
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-25T23:49:41.465107",
+    "metrics": {
+      "latency": 21.2,
+      "packet_loss": 0.32,
+      "jitter": 5.19,
+      "bandwidth": 43.16
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 22,
+      "decision_score": 0.16668856600957327
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:11:50.361379",
+    "metrics": {
+      "latency": 31.42,
+      "packet_loss": 0.18,
+      "jitter": 3.65,
+      "bandwidth": 40.06
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 37,
+      "decision_score": 0.07465091863034018
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:11:54.464570",
+    "metrics": {
+      "latency": 27.36,
+      "packet_loss": 0.13,
+      "jitter": 4.31,
+      "bandwidth": 44.7
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 27,
+      "decision_score": 0.1327063042309249
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:12:07.413988",
+    "metrics": {
+      "latency": 22.49,
+      "packet_loss": 0.96,
+      "jitter": 4.02,
+      "bandwidth": 42.65
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 42,
+      "decision_score": 0.044924927150024496
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:12:09.611492",
+    "metrics": {
+      "latency": 19.86,
+      "packet_loss": 0.56,
+      "jitter": 4.85,
+      "bandwidth": 34.67
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 32,
+      "decision_score": 0.10521330614249919
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:19:56.367081",
+    "metrics": {
+      "latency": 27.05,
+      "packet_loss": 0.14,
+      "jitter": 3.98,
+      "bandwidth": 43.86
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 29,
+      "decision_score": 0.12488730468936798
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:19:59.748851",
+    "metrics": {
+      "latency": 28.79,
+      "packet_loss": 0.53,
+      "jitter": 5.8,
+      "bandwidth": 48.5
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 25,
+      "decision_score": 0.14979954970614312
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:11.410851",
+    "metrics": {
+      "latency": 25.86,
+      "packet_loss": 0.28,
+      "jitter": 3.83,
+      "bandwidth": 33.42
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 30,
+      "decision_score": 0.11655021412407479
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:13.807305",
+    "metrics": {
+      "latency": 29.7,
+      "packet_loss": 0.64,
+      "jitter": 3.6,
+      "bandwidth": 31.29
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 44,
+      "decision_score": 0.03138542087725815
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:15.852162",
+    "metrics": {
+      "latency": 20.15,
+      "packet_loss": 1.03,
+      "jitter": 2.55,
+      "bandwidth": 45.97
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 54,
+      "decision_score": -0.03596096518760472
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:17.898303",
+    "metrics": {
+      "latency": 18.15,
+      "packet_loss": 0.99,
+      "jitter": 3.17,
+      "bandwidth": 46.43
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 53,
+      "decision_score": -0.027074953610865204
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:20.419051",
+    "metrics": {
+      "latency": 28.58,
+      "packet_loss": 0.8,
+      "jitter": 6.29,
+      "bandwidth": 37.98
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 40,
+      "decision_score": 0.05802980449465733
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:22.507426",
+    "metrics": {
+      "latency": 21.16,
+      "packet_loss": 0.8,
+      "jitter": 5.08,
+      "bandwidth": 42.47
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 34,
+      "decision_score": 0.09011285483875753
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:24.570206",
+    "metrics": {
+      "latency": 30.73,
+      "packet_loss": 0.9,
+      "jitter": 5.49,
+      "bandwidth": 37.25
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 48,
+      "decision_score": 0.011845346306663007
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:26.623764",
+    "metrics": {
+      "latency": 21.83,
+      "packet_loss": 0.34,
+      "jitter": 5.02,
+      "bandwidth": 30.54
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 32,
+      "decision_score": 0.10418887115547026
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:28.684367",
+    "metrics": {
+      "latency": 25.43,
+      "packet_loss": 0.96,
+      "jitter": 4.48,
+      "bandwidth": 37.98
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 41,
+      "decision_score": 0.04975560488562425
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:30.748400",
+    "metrics": {
+      "latency": 24.31,
+      "packet_loss": 0.29,
+      "jitter": 3.95,
+      "bandwidth": 42.59
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 21,
+      "decision_score": 0.16953105853529316
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:32.828547",
+    "metrics": {
+      "latency": 24.81,
+      "packet_loss": 1.07,
+      "jitter": 3.85,
+      "bandwidth": 42.72
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 46,
+      "decision_score": 0.021529705771228813
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:34.904528",
+    "metrics": {
+      "latency": 24.85,
+      "packet_loss": 0.91,
+      "jitter": 6.46,
+      "bandwidth": 47.01
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 39,
+      "decision_score": 0.061611376457414935
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:36.965731",
+    "metrics": {
+      "latency": 30.29,
+      "packet_loss": 1.14,
+      "jitter": 4.94,
+      "bandwidth": 34.45
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 54,
+      "decision_score": -0.03592441516491596
+    },
+    "rca": {
+      "cause": "Statistical Telemetry Outlier",
+      "impact": "The telemetry profile deviates from the baseline model on multiple metrics simultaneously without exceeding individual hard thresholds.",
+      "confidence": 65
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:39.080413",
+    "metrics": {
+      "latency": 20.76,
+      "packet_loss": 0.83,
+      "jitter": 4.58,
+      "bandwidth": 33.13
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 45,
+      "decision_score": 0.027594193474063333
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T00:51:41.154972",
+    "metrics": {
+      "latency": 28.87,
+      "packet_loss": 0.34,
+      "jitter": 2.58,
+      "bandwidth": 35.28
+    },
+    "anomaly": {
+      "is_anomaly": false,
+      "anomaly_score": 41,
+      "decision_score": 0.05333946546973323
+    },
+    "rca": {
+      "cause": "Normal Operation",
+      "impact": "All network pathways are performing within normal operational baselines.",
+      "confidence": 100
+    }
+  },
+  {
+    "timestamp": "2026-06-26T17:40:00Z",
+    "metrics": {
+      "latency": 120.5,
+      "packet_loss": 0.2,
+      "jitter": 16.0,
+      "bandwidth": 90.0
+    },
+    "anomaly": {
+      "is_anomaly": true,
+      "anomaly_score": 68,
+      "decision_score": -0.15198811067743667
+    },
+    "rca": {
+      "cause": "Bandwidth Saturation / Traffic Overload",
+      "impact": "High bandwidth utilization (90.0%) is causing link congestion, queue delays, and minor packet loss. Latency is also spiking due to queuing delay.",
+      "confidence": 90
+    }
+  }
+]

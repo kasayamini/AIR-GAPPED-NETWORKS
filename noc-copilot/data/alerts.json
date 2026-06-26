@@ -1,0 +1,23 @@
+[
+  {
+    "id": "alert-2026-06-26T17:40:00Z-1782495060",
+    "timestamp": "2026-06-26T17:40:00Z",
+    "device_name": "SD-WAN Edge Gateway 01",
+    "severity": "MEDIUM",
+    "root_cause": "Bandwidth Saturation / Traffic Overload",
+    "business_impact": "High bandwidth utilization (90.0%) is causing link congestion, queue delays, and minor packet loss. Latency is also spiking due to queuing delay.",
+    "recommended_action": "Throttle non-critical flows, verify QoS policies, and investigate heavy traffic sources.",
+    "anomaly_score": 68,
+    "metrics": {
+      "latency": 120.5,
+      "packet_loss": 0.2,
+      "jitter": 16.0,
+      "bandwidth": 90.0
+    },
+    "rca": {
+      "cause": "Bandwidth Saturation / Traffic Overload",
+      "impact": "High bandwidth utilization (90.0%) is causing link congestion, queue delays, and minor packet loss. Latency is also spiking due to queuing delay.",
+      "confidence": 90
+    }
+  }
+]

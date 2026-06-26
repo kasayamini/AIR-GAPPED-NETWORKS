@@ -1,0 +1,34 @@
+[
+  {
+    "role": "user",
+    "content": "Are you alive?"
+  },
+  {
+    "role": "assistant",
+    "content": "Stubbed response: backend route works."
+  },
+  {
+    "role": "user",
+    "content": "Are you alive?"
+  },
+  {
+    "role": "assistant",
+    "content": "Unable to fetch assistant response: HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=120)"
+  },
+  {
+    "role": "user",
+    "content": "Are you alive?"
+  },
+  {
+    "role": "assistant",
+    "content": "**System Status:** Waiting for Telemetry.\n\n**Current Telemetry:**\n\n* Latency: 28.87ms\n* Packet Loss: 0.34%\n* Jitter: 2.58ms\n* Bandwidth: 35.28%\n\n**RCA (Root Cause Analysis):**\nNormal Operation, All network pathways are performing within normal operational baselines.\n\n**Recent Alerts:** None\n\n**Historical Anomalies:** Multiple Statistical Telemetry Outliers and Critical ISP / Link Degradations were detected between 2026-06-25T23:48:02 and 2026-06-26T00:51:17. However, the current telemetry indicates normal operation.\n\nI am an offline AI NOC Copilot assistant, not a living entity. I provide information based on the provided network context and current telemetry."
+  },
+  {
+    "role": "user",
+    "content": "What caused the recent alerts?"
+  },
+  {
+    "role": "assistant",
+    "content": "**Alert Analysis:**\n\nThe recent alert on 2026-06-26T17:40:00Z is related to **Bandwidth Saturation / Traffic Overload**, with an impact of High bandwidth utilization (90.0%) causing link congestion, queue delays, and minor packet loss.\n\n**Root Cause:** The current telemetry profile indicates a deviation from expected network health due to high bandwidth utilization.\n\n**Recommended Resolution:** Inspect traffic policies, throttle non-critical bulk flows, and consider applying QoS to prevent saturation.\n\nPlease verify the affected circuit and device status, then validate the fix by comparing new telemetry to baseline thresholds. Document the incident, tune traffic engineering policies, and schedule a maintenance window to validate WAN stability."
+  }
+]
