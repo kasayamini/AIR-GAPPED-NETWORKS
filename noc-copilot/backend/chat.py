@@ -1,13 +1,24 @@
 import json
 import logging
 import asyncio
-from fastapi import APIRouter, HTTPException, Request
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 
 from backend.config import MAX_CHAT_MESSAGES
 from backend.context import build_system_context
 from backend.ollama_client import OllamaClient
 from backend.storage import get_chat_history, save_chat_history, append_chat_message
+
+
+class ChatRequest(BaseModel):
+    message: Optional[str] = None
+    question: Optional[str] = None
+
+
+class ChatResponse(BaseModel):
+    reply: str
+
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -44,21 +55,23 @@ def _build_prompt(user_question: str, context: Dict[str, Any]) -> str:
     return "\n".join(instructions + ["".join(prompt_parts)])
 
 
-@router.post("/chat")
-async def post_chat(request: Request):
-    body = await request.json()
-    user_question = body.get("question")
+@router.post("/chat", response_model=ChatResponse)
+async def post_chat(request: ChatRequest):
+    user_question = request.message or request.question
     if not user_question:
-        raise HTTPException(status_code=400, detail="Missing question field")
-
-    context = build_system_context()
-    prompt = _build_prompt(user_question, context)
+        raise HTTPException(status_code=400, detail="Missing message or question field")
 
     previous_history = get_chat_history()[-MAX_CHAT_MESSAGES:]
     user_entry = {"role": "user", "content": user_question}
     conversation_history = previous_history + [user_entry]
     append_chat_message(user_entry)
-    save_chat_history(conversation_history)
+    try:
+        save_chat_history(conversation_history)
+    except Exception as exc:
+        logger.error('Failed to save user chat history: %s', exc)
+
+    context = build_system_context()
+    prompt = _build_prompt(user_question, context)
 
     print('CHAT REQUEST START', user_question)
     assistant_content = ""
@@ -92,9 +105,12 @@ async def post_chat(request: Request):
     assistant_entry = {"role": "assistant", "content": assistant_content}
     append_chat_message(assistant_entry)
     conversation_history.append(assistant_entry)
-    save_chat_history(conversation_history)
+    try:
+        save_chat_history(conversation_history)
+    except Exception as exc:
+        logger.error('Failed to save assistant chat history: %s', exc)
 
-    return {"assistant": assistant_content}
+    return {"reply": assistant_content}
 
 
 @router.get("/chat/history")

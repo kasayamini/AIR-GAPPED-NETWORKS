@@ -1,3 +1,7 @@
+const API_BASE = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL)
+    ? import.meta.env.VITE_API_URL.replace(/\/$/, '')
+    : 'https://air-gapped-networks.onrender.com';
+
 export class ChatPanel {
     constructor(containerId) {
         this.containerId = containerId;
@@ -83,7 +87,7 @@ export class ChatPanel {
 
     async loadHistory() {
         try {
-            const response = await fetch('/api/chat/history');
+            const response = await fetch(`${API_BASE}/api/chat/history`);
             if (response.ok) {
                 this.chatHistory = await response.json();
             }
@@ -100,10 +104,10 @@ export class ChatPanel {
 
         try {
             const controller = new AbortController();
-            const response = await fetch('/api/chat', {
+            const response = await fetch(`${API_BASE}/api/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ question }),
+                body: JSON.stringify({ message: question }),
                 signal: controller.signal
             });
 
@@ -112,82 +116,13 @@ export class ChatPanel {
                 throw new Error(errorText || 'Chat request failed');
             }
 
-            // Try to read as stream first; if server returns a plain JSON object
-            // (non-streaming), fall back to parsing the full response body.
-            try {
-                if (response.body && response.body.getReader) {
-                    const reader = response.body.getReader();
-                    const decoder = new TextDecoder('utf-8');
-                    let buffer = '';
-
-                    while (true) {
-                        const { value, done } = await reader.read();
-                        if (done) break;
-                        buffer += decoder.decode(value, { stream: true });
-                        let lines = buffer.split('\n');
-                        buffer = lines.pop();
-                        for (const line of lines) {
-                            if (!line.trim()) continue;
-                            let decoded = line;
-                            try {
-                                const parsed = JSON.parse(line);
-                                if (parsed.error) {
-                                    decoded = `Error: ${parsed.error}`;
-                                } else if (parsed.delta && parsed.delta.content) {
-                                    decoded = parsed.delta.content;
-                                }
-                            } catch (err) {
-                                // keep raw line if not JSON
-                            }
-                            this.currentMessage += decoded;
-                            this.updateAssistantMessage(this.currentMessage);
-                        }
-                    }
-
-                    // If nothing was streamed, try to parse leftover buffer as JSON
-                    if (!this.currentMessage && buffer) {
-                        try {
-                            const parsed = JSON.parse(buffer);
-                            if (parsed && parsed.assistant) {
-                                this.updateAssistantMessage(parsed.assistant);
-                            } else {
-                                this.updateAssistantMessage(typeof parsed === 'string' ? parsed : JSON.stringify(parsed));
-                            }
-                        } catch (err) {
-                            // not JSON, append raw buffer
-                            this.updateAssistantMessage(buffer);
-                        }
-                    }
-                } else {
-                    // No readable stream available, parse as JSON
-                    const data = await response.json();
-                    if (data && data.assistant) {
-                        this.updateAssistantMessage(data.assistant);
-                    } else {
-                        this.updateAssistantMessage(JSON.stringify(data));
-                    }
-                }
-            } catch (err) {
-                // As a final fallback parse full text
-                try {
-                    const text = await response.text();
-                    try {
-                        const parsed = JSON.parse(text);
-                        if (parsed && parsed.assistant) {
-                            this.updateAssistantMessage(parsed.assistant);
-                        } else {
-                            this.updateAssistantMessage(JSON.stringify(parsed));
-                        }
-                    } catch (_) {
-                        this.updateAssistantMessage(text);
-                    }
-                } catch (err2) {
-                    console.error('Failed to read chat response:', err2);
-                }
-            }
+            const data = await response.json();
+            const reply = data && typeof data.reply === 'string' ? data.reply : JSON.stringify(data);
+            this.updateAssistantMessage(reply);
         } catch (error) {
-            this.updateAssistantMessage(`Unable to get assistant response: ${error.message}`);
-            console.error('Chat stream failed:', error);
+            const errorMessage = error?.message || 'Chat request failed';
+            this.updateAssistantMessage(`Unable to get assistant response: ${errorMessage}`);
+            console.error('Chat request failed:', error);
         } finally {
             this.isStreaming = false;
             this.currentMessage = '';

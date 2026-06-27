@@ -4,8 +4,10 @@ import { ChatPanel } from './ChatPanel.js';
 
 class App {
     constructor() {
-        // Base API URL can be set at build time using Vite env `VITE_API_BASE`
-        this.API_BASE = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE) ? import.meta.env.VITE_API_BASE : '';
+        const envApiUrl = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL)
+            ? import.meta.env.VITE_API_URL
+            : 'https://air-gapped-networks.onrender.com';
+        this.API_BASE = envApiUrl.replace(/\/$/, '');
         this.history = [];
         this.latestPayload = null;
         this.systemContext = {};
@@ -62,8 +64,7 @@ class App {
 
     async loadHistory() {
         try {
-            const url = this.API_BASE ? `${this.API_BASE}/api/history` : '/api/history';
-            const response = await fetch(url);
+            const response = await fetch(`${this.API_BASE}/api/history`);
             if (response.ok) {
                 this.history = await response.json();
                 console.log(`Loaded ${this.history.length} telemetry points from server logs.`);
@@ -78,8 +79,7 @@ class App {
 
     async loadSystemContext() {
         try {
-            const url = this.API_BASE ? `${this.API_BASE}/api/system/context` : '/api/system/context';
-            const response = await fetch(url);
+            const response = await fetch(`${this.API_BASE}/api/system/context`);
             if (response.ok) {
                 this.systemContext = await response.json();
             }
