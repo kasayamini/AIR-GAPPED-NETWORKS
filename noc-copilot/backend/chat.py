@@ -1,14 +1,17 @@
 import json
 import logging
 import asyncio
-from typing import Dict, Any, List, Optional
+from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from backend.config import MAX_CHAT_MESSAGES
 from backend.context import build_system_context
+from backend.correlation_engine import correlation_engine
+from backend.incident_engine import incident_engine
 from backend.ollama_client import OllamaClient
-from backend.storage import get_chat_history, save_chat_history, append_chat_message
+from backend.storage import get_alerts, get_history, get_chat_history, save_chat_history, append_chat_message
+from backend.timeline_engine import timeline_engine
 
 
 class ChatRequest(BaseModel):
@@ -18,6 +21,7 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
     reply: str
+    incident_data: Dict[str, Any]
 
 
 router = APIRouter()
@@ -25,34 +29,102 @@ logger = logging.getLogger(__name__)
 client = OllamaClient()
 
 
-def _build_prompt(user_question: str, context: Dict[str, Any]) -> str:
+def _format_incident_list(incidents: List[Dict[str, Any]]) -> str:
+    if not incidents:
+        return "No active incidents found."
+    lines = []
+    for incident in incidents[:5]:
+        lines.append(
+            f"[{incident.get('timestamp')}] {incident.get('severity')} {incident.get('service')} - {incident.get('summary')}"
+        )
+    return "\n".join(lines)
+
+
+def _format_correlations(correlations: List[Dict[str, Any]]) -> str:
+    if not correlations:
+        return "No correlated incident patterns detected."
+    lines = []
+    for group in correlations[:3]:
+        primary = group.get("primary_incident", {})
+        related = len(group.get("related_incidents", []))
+        lines.append(
+            f"Primary incident {primary.get('id')} correlated with {related} related incident(s)."
+        )
+    return "\n".join(lines)
+
+
+def _format_timeline(timeline: List[Dict[str, Any]]) -> str:
+    if not timeline:
+        return "No incident timeline available."
+    return "\n".join([f"[{step.get('timestamp')}] {step.get('description')}" for step in timeline[:5]])
+
+
+def _build_prompt(user_question: str, context: Dict[str, Any], incidents: List[Dict[str, Any]], correlations: List[Dict[str, Any]], timeline: List[Dict[str, Any]]) -> str:
     instructions = [
         "You are an offline AI NOC Copilot assistant for a network operations center.",
-        "Answer using the provided network context and current telemetry. Do not hallucinate.",
-        "If the information is unavailable, say it is unavailable clearly.",
-        "Support networking, Cisco, routing, switching, SD-WAN, MPLS, TCP/IP, OSI, VLAN, STP, EtherChannel, OSPF, EIGRP, BGP, RIP, QoS, ACL, NAT, VPN, Firewall, DNS, DHCP, Linux, Windows, Python, FastAPI, Machine Learning, Network Security, and troubleshooting.",
-        "Include recommended commands and steps when applicable."
+        "Use only the provided incident context, telemetry, alerts, and correlated incident data.",
+        "Do not hallucinate or invent information outside the given data.",
+        "If the requested information is unavailable, state that it is unavailable and provide concrete next-step troubleshooting guidance.",
+        "Answer clearly, professionally, and with NOC operations style."
     ]
 
-    summary = context.get("summary", "No system context available.")
-    recent_alerts = context.get("recent_alerts", [])
-
-    alert_lines = []
-    for alert in recent_alerts[-5:]:
-        alert_lines.append(f"[{alert.get('timestamp')}] {alert.get('severity')}: {alert.get('root_cause')}.")
+    incident_summary = _format_incident_list(incidents)
+    correlation_summary = _format_correlations(correlations)
+    timeline_summary = _format_timeline(timeline)
 
     prompt_parts = [
-        "System Context:\n", summary,
+        "System Context:\n", context.get("summary", "No system context available."),
+        "\n\nActive Incidents:\n", incident_summary,
+        "\n\nCorrelated Incident Patterns:\n", correlation_summary,
+        "\n\nIncident Timeline:\n", timeline_summary,
         "\n\nCurrent Telemetry:\n", json.dumps(context.get("current_telemetry", {}), indent=2),
         "\n\nCurrent RCA:\n", json.dumps(context.get("current_rca", {}), indent=2),
-        "\n\nRecent Alerts:\n", "\n".join(alert_lines) if alert_lines else "No recent alerts.",
-        "\n\nRecent Incidents:\n", json.dumps(context.get("recent_incidents", []), indent=2),
-        "\n\nHistorical Anomalies:\n", json.dumps(context.get("historical_anomalies", []), indent=2),
         "\n\nUser Question:\n", user_question,
-        "\n\nAnswer in a concise but professional NOC operator style."
+        "\n\nProvide a structured, incident-aware answer that references active incidents and root cause analysis when applicable."
     ]
 
     return "\n".join(instructions + ["".join(prompt_parts)])
+
+
+def _extract_assistant_reply(response_data: Any) -> Optional[str]:
+    if isinstance(response_data, dict):
+        if isinstance(response_data.get("reply"), str):
+            return response_data["reply"]
+        if isinstance(response_data.get("assistant"), str):
+            return response_data["assistant"]
+
+        for choice in response_data.get("choices", []):
+            if not isinstance(choice, dict):
+                continue
+            message = choice.get("message")
+            if isinstance(message, dict) and isinstance(message.get("content"), str):
+                return message["content"]
+            if isinstance(choice.get("text"), str):
+                return choice["text"]
+            delta = choice.get("delta")
+            if isinstance(delta, dict) and isinstance(delta.get("content"), str):
+                return delta["content"]
+
+    if isinstance(response_data, str):
+        return response_data
+
+    return None
+
+
+def _fallback_reply(user_question: str, incidents: List[Dict[str, Any]]) -> str:
+    if incidents:
+        top_incident = incidents[0]
+        return (
+            f"The local model is unavailable. Based on the active incident '{top_incident.get('summary')}', "
+            f"investigate {top_incident.get('service')} issues and validate the root cause: {top_incident.get('root_cause')}."
+        )
+
+    normalized = user_question.lower()
+    if any(term in normalized for term in ["latency", "packet loss", "jitter", "bandwidth"]):
+        return "The local model is unavailable. Investigate interface and WAN path health for latency or packet loss issues."
+    if any(term in normalized for term in ["alert", "incident", "down", "critical"]):
+        return "The local model is unavailable. Review active alerts and incident summaries, then validate the most severe incident impact."
+    return "The local model is unavailable. Use existing telemetry and alerts to verify device health and routing stability."
 
 
 @router.post("/chat", response_model=ChatResponse)
@@ -70,37 +142,24 @@ async def post_chat(request: ChatRequest):
     except Exception as exc:
         logger.error('Failed to save user chat history: %s', exc)
 
-    context = build_system_context()
-    prompt = _build_prompt(user_question, context)
+    history = get_history()
+    alerts = get_alerts()
+    incidents = incident_engine.parse_incidents(history, alerts)
+    correlations = correlation_engine.correlate(incidents)
+    timeline = timeline_engine.build_timeline(incidents)
 
-    print('CHAT REQUEST START', user_question)
+    context = build_system_context()
+    prompt = _build_prompt(user_question, context, incidents, correlations, timeline)
+
     assistant_content = ""
     try:
-        print('CALLING OLLAMA CHAT (thread)')
         response_data = await asyncio.to_thread(client.chat, prompt, previous_history)
-        print('OLLAMA RESPONSE RECEIVED')
-
-        if isinstance(response_data, dict):
-            choices = response_data.get("choices") or []
-            for choice in choices:
-                if isinstance(choice, dict):
-                    message = choice.get("message")
-                    if isinstance(message, dict) and message.get("content"):
-                        assistant_content += message.get("content")
-                    elif choice.get("text"):
-                        assistant_content += choice.get("text")
-                    elif choice.get("delta") and isinstance(choice.get("delta"), dict):
-                        assistant_content += choice["delta"].get("content", "")
+        assistant_content = _extract_assistant_reply(response_data) or ""
         if not assistant_content:
-            assistant_content = json.dumps(response_data)
+            assistant_content = _fallback_reply(user_question, incidents)
     except Exception as exc:
-        error_message = str(exc)
-        logger.error('Ollama chat failed: %s', error_message)
-        assistant_content = (
-            'Unable to fetch assistant response from Ollama. '
-            'Please check the Ollama server, model availability, and request timeout settings. '
-            f'Error: {error_message}'
-        )
+        logger.error('Ollama chat failed: %s', exc)
+        assistant_content = _fallback_reply(user_question, incidents)
 
     assistant_entry = {"role": "assistant", "content": assistant_content}
     append_chat_message(assistant_entry)
@@ -110,7 +169,13 @@ async def post_chat(request: ChatRequest):
     except Exception as exc:
         logger.error('Failed to save assistant chat history: %s', exc)
 
-    return {"reply": assistant_content}
+    incident_data = {
+        "incidents": incidents,
+        "correlations": correlations,
+        "timeline": timeline,
+    }
+
+    return {"reply": assistant_content, "incident_data": incident_data}
 
 
 @router.get("/chat/history")

@@ -8,7 +8,7 @@ ALERTS_FILE = DATA_DIR / "alerts.json"
 INCIDENTS_FILE = DATA_DIR / "incidents.json"
 CHAT_HISTORY_FILE = DATA_DIR / "chat_history.json"
 
-OLLAMA_URL = "http://127.0.0.1:11434"
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434")
 OLLAMA_MODEL = "llama3.1:latest"
 OLLAMA_REQUEST_TIMEOUT = 180
 OLLAMA_RETRIES = 2
