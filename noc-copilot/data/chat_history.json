@@ -30,5 +30,69 @@
   {
     "role": "assistant",
     "content": "**Alert Analysis:**\n\nThe recent alert on 2026-06-26T17:40:00Z is related to **Bandwidth Saturation / Traffic Overload**, with an impact of High bandwidth utilization (90.0%) causing link congestion, queue delays, and minor packet loss.\n\n**Root Cause:** The current telemetry profile indicates a deviation from expected network health due to high bandwidth utilization.\n\n**Recommended Resolution:** Inspect traffic policies, throttle non-critical bulk flows, and consider applying QoS to prevent saturation.\n\nPlease verify the affected circuit and device status, then validate the fix by comparing new telemetry to baseline thresholds. Document the incident, tune traffic engineering policies, and schedule a maintenance window to validate WAN stability."
+  },
+  {
+    "role": "user",
+    "content": "what are recent alerts?"
+  },
+  {
+    "role": "assistant",
+    "content": "[2026-06-26T17:40:00Z] MEDIUM: Alert"
+  },
+  {
+    "role": "user",
+    "content": "what incidents are active?"
+  },
+  {
+    "role": "assistant",
+    "content": "[2026-06-26T00:51:26.623764] LOW WAN: Telemetry: latency=21.83, packet_loss=0.34, jitter=5.02, bandwidth=30.54; Anomaly score 32; RCA: Normal Operation\n[2026-06-26T00:51:28.684367] LOW WAN: Telemetry: latency=25.43, packet_loss=0.96, jitter=4.48, bandwidth=37.98; Anomaly score 41; RCA: Normal Operation\n[2026-06-26T00:51:30.748400] LOW WAN: Telemetry: latency=24.31, packet_loss=0.29, jitter=3.95, bandwidth=42.59; Anomaly score 21; RCA: Normal Operation\n[2026-06-26T00:51:32.828547] LOW WAN: Telemetry: latency=24.81, packet_loss=1.07, jitter=3.85, bandwidth=42.72; Anomaly score 46; RCA: Normal Operation\n[2026-06-26T00:51:34.904528] LOW WAN: Telemetry: latency=24.85, packet_loss=0.91, jitter=6.46, bandwidth=47.01; Anomaly score 39; RCA: Normal Operation\n[2026-06-26T00:51:36.965731] LOW WAN: Telemetry: latency=30.29, packet_loss=1.14, jitter=4.94, bandwidth=34.45; Anomaly score 54; RCA: Statistical Telemetry Outlier\n[2026-06-26T00:51:39.080413] LOW WAN: Telemetry: latency=20.76, packet_loss=0.83, jitter=4.58, bandwidth=33.13; Anomaly score 45; RCA: Normal Operation\n[2026-06-26T00:51:41.154972] LOW WAN: Telemetry: latency=28.87, packet_loss=0.34, jitter=2.58, bandwidth=35.28; Anomaly score 41; RCA: Normal Operation\n[2026-06-26T17:40:00+00:00] MEDIUM WAN: Telemetry: latency=120.5, packet_loss=0.2, jitter=16.0, bandwidth=90.0; Anomaly score 68; RCA: Bandwidth Saturation / Traffic Overload\n[2026-06-26T17:40:00+00:00] MEDIUM Network: Alert event"
+  },
+  {
+    "role": "user",
+    "content": "CPU high on server A"
+  },
+  {
+    "role": "assistant",
+    "content": "No relevant data found"
+  },
+  {
+    "role": "user",
+    "content": "what is system status?"
+  },
+  {
+    "role": "assistant",
+    "content": "Recent alerts: 1 \nActive incidents: 1 \nSystem Status: Degraded"
+  },
+  {
+    "role": "user",
+    "content": "what are recent alerts?"
+  },
+  {
+    "role": "assistant",
+    "content": "[2026-06-26T17:40:00Z] MEDIUM: Bandwidth Saturation / Traffic Overload"
+  },
+  {
+    "role": "user",
+    "content": "what incidents are active?"
+  },
+  {
+    "role": "assistant",
+    "content": "[2026-06-26T00:51:26.623764] LOW WAN: Telemetry: latency=21.83, packet_loss=0.34, jitter=5.02, bandwidth=30.54; Anomaly score 32; RCA: Normal Operation\n[2026-06-26T00:51:28.684367] LOW WAN: Telemetry: latency=25.43, packet_loss=0.96, jitter=4.48, bandwidth=37.98; Anomaly score 41; RCA: Normal Operation\n[2026-06-26T00:51:30.748400] LOW WAN: Telemetry: latency=24.31, packet_loss=0.29, jitter=3.95, bandwidth=42.59; Anomaly score 21; RCA: Normal Operation\n[2026-06-26T00:51:32.828547] LOW WAN: Telemetry: latency=24.81, packet_loss=1.07, jitter=3.85, bandwidth=42.72; Anomaly score 46; RCA: Normal Operation\n[2026-06-26T00:51:34.904528] LOW WAN: Telemetry: latency=24.85, packet_loss=0.91, jitter=6.46, bandwidth=47.01; Anomaly score 39; RCA: Normal Operation\n[2026-06-26T00:51:36.965731] LOW WAN: Telemetry: latency=30.29, packet_loss=1.14, jitter=4.94, bandwidth=34.45; Anomaly score 54; RCA: Statistical Telemetry Outlier\n[2026-06-26T00:51:39.080413] LOW WAN: Telemetry: latency=20.76, packet_loss=0.83, jitter=4.58, bandwidth=33.13; Anomaly score 45; RCA: Normal Operation\n[2026-06-26T00:51:41.154972] LOW WAN: Telemetry: latency=28.87, packet_loss=0.34, jitter=2.58, bandwidth=35.28; Anomaly score 41; RCA: Normal Operation\n[2026-06-26T17:40:00+00:00] MEDIUM WAN: Telemetry: latency=120.5, packet_loss=0.2, jitter=16.0, bandwidth=90.0; Anomaly score 68; RCA: Bandwidth Saturation / Traffic Overload\n[2026-06-26T17:40:00+00:00] MEDIUM Network: Alert event"
+  },
+  {
+    "role": "user",
+    "content": "CPU high on server A"
+  },
+  {
+    "role": "assistant",
+    "content": "No relevant data found"
+  },
+  {
+    "role": "user",
+    "content": "what is system status?"
+  },
+  {
+    "role": "assistant",
+    "content": "Recent alerts: 1 \nActive incidents: 1 \nSystem Status: Degraded"
   }
 ]

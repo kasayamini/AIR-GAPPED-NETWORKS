@@ -1,6 +1,5 @@
 import json
 import logging
-import asyncio
 from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -9,8 +8,7 @@ from backend.config import MAX_CHAT_MESSAGES
 from backend.context import build_system_context
 from backend.correlation_engine import correlation_engine
 from backend.incident_engine import incident_engine
-from backend.ollama_client import OllamaClient
-from backend.storage import get_alerts, get_history, get_chat_history, save_chat_history, append_chat_message
+from backend.storage import get_alerts, get_history, get_incidents, get_chat_history, save_chat_history, append_chat_message
 from backend.timeline_engine import timeline_engine
 
 
@@ -26,105 +24,149 @@ class ChatResponse(BaseModel):
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
-client = OllamaClient()
 
 
-def _format_incident_list(incidents: List[Dict[str, Any]]) -> str:
+def _normalize_text(text: str) -> str:
+    return text.strip().lower()
+
+
+def _is_alert_query(question: str) -> bool:
+    q = _normalize_text(question)
+    return any(
+        phrase in q
+        for phrase in [
+            "recent alerts",
+            "what alerts",
+            "show alerts",
+            "list alerts",
+            "active alerts",
+            "alerts?",
+        ]
+    )
+
+
+def _is_incident_query(question: str) -> bool:
+    q = _normalize_text(question)
+    return any(
+        phrase in q
+        for phrase in [
+            "what incidents",
+            "active incidents",
+            "show incidents",
+            "list incidents",
+            "current incidents",
+            "incidents?",
+        ]
+    )
+
+
+def _is_status_query(question: str) -> bool:
+    q = _normalize_text(question)
+    return any(
+        phrase in q
+        for phrase in [
+            "what is happening",
+            "system status",
+            "current issues",
+            "what is going on",
+            "status?",
+        ]
+    )
+
+
+def _format_alerts(alerts: List[Dict[str, Any]]) -> str:
+    if not alerts:
+        return "No relevant data found"
+    lines = []
+    for alert in alerts[-10:]:
+        summary = (
+            alert.get("summary")
+            or alert.get("message")
+            or alert.get("title")
+            or alert.get("root_cause")
+            or "Alert"
+        )
+        timestamp = alert.get("timestamp", "unknown time")
+        severity = str(alert.get("severity", "UNKNOWN")).upper()
+        lines.append(f"[{timestamp}] {severity}: {summary}")
+    return "\n".join(lines)
+
+
+def _format_incidents(incidents: List[Dict[str, Any]]) -> str:
     if not incidents:
-        return "No active incidents found."
+        return "No relevant data found"
     lines = []
-    for incident in incidents[:5]:
-        lines.append(
-            f"[{incident.get('timestamp')}] {incident.get('severity')} {incident.get('service')} - {incident.get('summary')}"
-        )
+    for incident in incidents[-10:]:
+        summary = incident.get("summary") or incident.get("incident") or "Incident"
+        timestamp = incident.get("timestamp", "unknown time")
+        severity = str(incident.get("severity", "UNKNOWN")).upper()
+        service = incident.get("service", "network")
+        lines.append(f"[{timestamp}] {severity} {service}: {summary}")
     return "\n".join(lines)
 
 
-def _format_correlations(correlations: List[Dict[str, Any]]) -> str:
-    if not correlations:
-        return "No correlated incident patterns detected."
+def _format_status(context: Dict[str, Any]) -> str:
+    alerts = context.get("recent_alerts", [])
+    incidents = context.get("recent_incidents", [])
+    if not alerts and not incidents:
+        return "No relevant data found"
     lines = []
-    for group in correlations[:3]:
-        primary = group.get("primary_incident", {})
-        related = len(group.get("related_incidents", []))
-        lines.append(
-            f"Primary incident {primary.get('id')} correlated with {related} related incident(s)."
-        )
-    return "\n".join(lines)
-
-
-def _format_timeline(timeline: List[Dict[str, Any]]) -> str:
-    if not timeline:
-        return "No incident timeline available."
-    return "\n".join([f"[{step.get('timestamp')}] {step.get('description')}" for step in timeline[:5]])
-
-
-def _build_prompt(user_question: str, context: Dict[str, Any], incidents: List[Dict[str, Any]], correlations: List[Dict[str, Any]], timeline: List[Dict[str, Any]]) -> str:
-    instructions = [
-        "You are an offline AI NOC Copilot assistant for a network operations center.",
-        "Use only the provided incident context, telemetry, alerts, and correlated incident data.",
-        "Do not hallucinate or invent information outside the given data.",
-        "If the requested information is unavailable, state that it is unavailable and provide concrete next-step troubleshooting guidance.",
-        "Answer clearly, professionally, and with NOC operations style."
-    ]
-
-    incident_summary = _format_incident_list(incidents)
-    correlation_summary = _format_correlations(correlations)
-    timeline_summary = _format_timeline(timeline)
-
-    prompt_parts = [
-        "System Context:\n", context.get("summary", "No system context available."),
-        "\n\nActive Incidents:\n", incident_summary,
-        "\n\nCorrelated Incident Patterns:\n", correlation_summary,
-        "\n\nIncident Timeline:\n", timeline_summary,
-        "\n\nCurrent Telemetry:\n", json.dumps(context.get("current_telemetry", {}), indent=2),
-        "\n\nCurrent RCA:\n", json.dumps(context.get("current_rca", {}), indent=2),
-        "\n\nUser Question:\n", user_question,
-        "\n\nProvide a structured, incident-aware answer that references active incidents and root cause analysis when applicable."
-    ]
-
-    return "\n".join(instructions + ["".join(prompt_parts)])
-
-
-def _extract_assistant_reply(response_data: Any) -> Optional[str]:
-    if isinstance(response_data, dict):
-        if isinstance(response_data.get("reply"), str):
-            return response_data["reply"]
-        if isinstance(response_data.get("assistant"), str):
-            return response_data["assistant"]
-
-        for choice in response_data.get("choices", []):
-            if not isinstance(choice, dict):
-                continue
-            message = choice.get("message")
-            if isinstance(message, dict) and isinstance(message.get("content"), str):
-                return message["content"]
-            if isinstance(choice.get("text"), str):
-                return choice["text"]
-            delta = choice.get("delta")
-            if isinstance(delta, dict) and isinstance(delta.get("content"), str):
-                return delta["content"]
-
-    if isinstance(response_data, str):
-        return response_data
-
-    return None
-
-
-def _fallback_reply(user_question: str, incidents: List[Dict[str, Any]]) -> str:
+    if alerts:
+        lines.append(f"Recent alerts: {len(alerts)}")
     if incidents:
-        top_incident = incidents[0]
-        return (
-            f"The local model is unavailable. Based on the active incident '{top_incident.get('summary')}', "
-            f"investigate {top_incident.get('service')} issues and validate the root cause: {top_incident.get('root_cause')}."
-        )
+        lines.append(f"Active incidents: {len(incidents)}")
+    status = "Healthy"
+    if incidents or alerts:
+        status = "Degraded"
+    return " \n".join(lines + [f"System Status: {status}"])
 
-    normalized = user_question.lower()
-    if any(term in normalized for term in ["latency", "packet loss", "jitter", "bandwidth"]):
-        return "The local model is unavailable. Investigate interface and WAN path health for latency or packet loss issues."
-    if any(term in normalized for term in ["alert", "incident", "down", "critical"]):
-        return "The local model is unavailable. Review active alerts and incident summaries, then validate the most severe incident impact."
-    return "The local model is unavailable. Use existing telemetry and alerts to verify device health and routing stability."
+
+def _analysis_response(question: str, context: Dict[str, Any], incidents: List[Dict[str, Any]], alerts: List[Dict[str, Any]]) -> str:
+    q = _normalize_text(question)
+    telemetry = context.get("current_telemetry", {})
+    rca = context.get("current_rca", {})
+
+    if any(metric in q for metric in ["latency", "packet loss", "jitter", "bandwidth", "throughput"]):
+        if telemetry:
+            metrics = []
+            if telemetry.get("latency") is not None:
+                metrics.append(f"latency={telemetry.get('latency')}ms")
+            if telemetry.get("packet_loss") is not None:
+                metrics.append(f"packet_loss={telemetry.get('packet_loss')}%")
+            if telemetry.get("jitter") is not None:
+                metrics.append(f"jitter={telemetry.get('jitter')}ms")
+            if telemetry.get("bandwidth") is not None:
+                metrics.append(f"bandwidth={telemetry.get('bandwidth')}%")
+            metric_text = ", ".join(metrics) if metrics else "no telemetry metrics available"
+            cause = rca.get("cause") or "Cause not available"
+            impact = rca.get("impact") or "Impact not available"
+            return f"{cause}. {metric_text}. {impact}".strip()
+
+    if any(term in q for term in ["incident", "outage", "degraded", "failure", "down", "problem", "error"]):
+        if incidents:
+            latest = incidents[-1]
+            summary = latest.get("summary") or latest.get("incident") or "Issue detected"
+            cause = latest.get("root_cause") or "Cause not available"
+            return f"{latest.get('severity', 'UNKNOWN')} incident: {summary}. Cause: {cause}."
+        if alerts:
+            alert = alerts[-1]
+            summary = alert.get("summary") or alert.get("message") or "Alert detected"
+            severity = str(alert.get("severity", "UNKNOWN")).upper()
+            return f"{severity} alert: {summary}."
+
+    if any(term in q for term in ["cpu", "server", "disk", "memory", "load"]):
+        return "No relevant data found"
+
+    if incidents:
+        latest = incidents[-1]
+        summary = latest.get("summary") or latest.get("incident") or "Issue detected"
+        return f"Active incident: {summary}."
+    if alerts:
+        alert = alerts[-1]
+        summary = alert.get("summary") or alert.get("message") or "Alert detected"
+        return f"Recent alert: {summary}."
+
+    return "No relevant data found"
 
 
 @router.post("/chat", response_model=ChatResponse)
@@ -147,19 +189,16 @@ async def post_chat(request: ChatRequest):
     incidents = incident_engine.parse_incidents(history, alerts)
     correlations = correlation_engine.correlate(incidents)
     timeline = timeline_engine.build_timeline(incidents)
-
     context = build_system_context()
-    prompt = _build_prompt(user_question, context, incidents, correlations, timeline)
 
-    assistant_content = ""
-    try:
-        response_data = await asyncio.to_thread(client.chat, prompt, previous_history)
-        assistant_content = _extract_assistant_reply(response_data) or ""
-        if not assistant_content:
-            assistant_content = _fallback_reply(user_question, incidents)
-    except Exception as exc:
-        logger.error('Ollama chat failed: %s', exc)
-        assistant_content = _fallback_reply(user_question, incidents)
+    if _is_alert_query(user_question):
+        assistant_content = _format_alerts(alerts)
+    elif _is_incident_query(user_question):
+        assistant_content = _format_incidents(incidents)
+    elif _is_status_query(user_question):
+        assistant_content = _format_status(context)
+    else:
+        assistant_content = _analysis_response(user_question, context, incidents, alerts)
 
     assistant_entry = {"role": "assistant", "content": assistant_content}
     append_chat_message(assistant_entry)
